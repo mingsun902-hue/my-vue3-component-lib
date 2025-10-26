@@ -1,27 +1,27 @@
-import { defineComponent as u, computed as s, createElementBlock as r, openBlock as i, normalizeClass as d, renderSlot as c } from "vue";
-import { buildProps as m, useBem as b } from "@my-org/utils";
-const B = ["primary", "success", "warning", "danger"], f = ["small", "medium", "large"], g = m({
+import { defineComponent as r, computed as s, createElementBlock as i, openBlock as d, normalizeClass as m, renderSlot as c, createTextVNode as b } from "vue";
+import { buildProps as B, useBem as f } from "@my-org/utils";
+const g = ["primary", "success", "warning", "danger"], p = ["small", "medium", "large"], y = B({
   type: {
     type: String,
     default: "primary",
-    values: B
+    values: g
   },
   size: {
     type: String,
     default: "medium",
-    values: f
+    values: p
   },
   disabled: Boolean,
   loading: Boolean,
   circle: Boolean,
   round: Boolean
-}), p = /* @__PURE__ */ u({
+}), z = /* @__PURE__ */ r({
   name: "Button",
   __name: "Button",
-  props: g,
+  props: y,
   setup(e) {
-    const { b: o, m: n, is: t } = b("button"), a = s(() => [
-      o(),
+    const { b: a, m: n, is: t } = f("button"), l = s(() => [
+      a(),
       n(e.type),
       n(e.size),
       t("disabled", e.disabled),
@@ -29,15 +29,17 @@ const B = ["primary", "success", "warning", "danger"], f = ["small", "medium", "
       t("round", e.round),
       t("loading", e.loading)
     ]);
-    return (l, y) => (i(), r("button", {
-      class: d(a.value)
+    return (u, o) => (d(), i("button", {
+      class: m(l.value)
     }, [
-      c(l.$slots, "default")
+      c(u.$slots, "default", {}, () => [
+        o[0] || (o[0] = b("爱你", -1))
+      ])
     ], 2));
   }
 });
-p.name = "Button";
+z.name = "Button";
 export {
-  p as Button,
-  p as default
+  z as Button,
+  z as default
 };
