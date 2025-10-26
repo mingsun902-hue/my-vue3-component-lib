@@ -1,6 +1,6 @@
 <template>
   <button :class="buttonKls">
-    <slot></slot>
+    <slot>爱你呦</slot>
   </button>
 </template>
 
