@@ -2,6 +2,8 @@ import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
+console.log(execSync(`git diff --name-only HEAD~1`, { encoding: 'utf-8' }))
+
 function getBaseBranch() {
   try {
     execSync('git fetch origin master --depth=1', { stdio: 'ignore' })

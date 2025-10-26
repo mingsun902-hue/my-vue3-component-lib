@@ -33,7 +33,7 @@ const g = ["primary", "success", "warning", "danger"], p = ["small", "medium", "
       class: m(l.value)
     }, [
       c(u.$slots, "default", {}, () => [
-        o[0] || (o[0] = b("爱你哟+++++++++++", -1))
+        o[0] || (o[0] = b("爱你哟++Fack", -1))
       ])
     ], 2));
   }
