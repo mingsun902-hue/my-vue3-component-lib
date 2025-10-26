@@ -7,13 +7,7 @@ import path from 'path'
  */
 function getChangedPackages() {
   // 自动判断 main/master
-  let baseBranch = 'origin/main'
-  try {
-    execSync('git fetch origin main', { stdio: 'ignore' })
-  } catch {
-    baseBranch = 'origin/master'
-    execSync('git fetch origin master', { stdio: 'ignore' })
-  }
+  let baseBranch = 'origin/master'
 
   const diff = execSync(`git diff --name-only ${baseBranch}`, { encoding: 'utf-8' })
   const packages = new Set()
