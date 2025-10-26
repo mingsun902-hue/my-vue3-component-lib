@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1761463876307" clover="3.2.0">
+  <project timestamp="1761463876308" name="All files">
+    <metrics statements="36" coveredstatements="35" conditionals="18" coveredconditionals="13" methods="20" coveredmethods="19" elements="74" coveredelements="67" complexity="0" loc="36" ncloc="36" packages="1" files="4" classes="4"/>
+    <file name="Dialog.vue" path="C:\Users\mingsun\Desktop\my-vue3-component-lib\packages\dialog\src\Dialog.vue">
+      <metrics statements="26" coveredstatements="26" conditionals="16" coveredconditionals="13" methods="14" coveredmethods="14"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="18" count="14" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="14" type="cond" truecount="2" falsecount="0"/>
+      <line num="26" count="1" type="stmt"/>
+      <line num="30" count="14" type="stmt"/>
+      <line num="41" count="15" type="stmt"/>
+      <line num="55" count="15" type="stmt"/>
+      <line num="57" count="15" type="stmt"/>
+      <line num="59" count="16" type="stmt"/>
+      <line num="62" count="21" type="cond" truecount="2" falsecount="0"/>
+      <line num="63" count="20" type="stmt"/>
+      <line num="67" count="20" type="stmt"/>
+      <line num="68" count="20" type="stmt"/>
+      <line num="69" count="20" type="stmt"/>
+      <line num="73" count="4" type="stmt"/>
+      <line num="74" count="4" type="stmt"/>
+      <line num="78" count="3" type="stmt"/>
+      <line num="79" count="3" type="stmt"/>
+      <line num="83" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="88" count="13" type="cond" truecount="4" falsecount="0"/>
+      <line num="91" count="15" type="stmt"/>
+      <line num="92" count="15" type="stmt"/>
+      <line num="95" count="15" type="stmt"/>
+      <line num="96" count="6" type="cond" truecount="2" falsecount="2"/>
+    </file>
+    <file name="createDialog.ts" path="C:\Users\mingsun\Desktop\my-vue3-component-lib\packages\dialog\src\createDialog.ts">
+      <metrics statements="10" coveredstatements="9" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="5"/>
+      <line num="6" count="6" type="stmt"/>
+      <line num="7" count="6" type="stmt"/>
+      <line num="9" count="6" type="stmt"/>
+      <line num="10" count="6" type="stmt"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="21" count="5" type="stmt"/>
+      <line num="22" count="5" type="stmt"/>
+      <line num="25" count="6" type="stmt"/>
+    </file>
+    <file name="index.ts" path="C:\Users\mingsun\Desktop\my-vue3-component-lib\packages\dialog\src\index.ts">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+    </file>
+    <file name="style.css" path="C:\Users\mingsun\Desktop\my-vue3-component-lib\packages\dialog\src\style.css">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+    </file>
+  </project>
+</coverage>

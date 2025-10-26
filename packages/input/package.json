@@ -1,0 +1,25 @@
+{
+  "name": "@my-org/input",
+  "version": "0.0.1",
+  "main": "dist/lib/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "style": "dist/esm/index.css",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@my-org/utils": "workspace:*",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "4.0.1"
+  }
+}

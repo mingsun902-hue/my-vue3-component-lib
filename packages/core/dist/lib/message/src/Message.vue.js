@@ -1,0 +1,1 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("./Message.vue2.js");;/* empty css              */const t=require("../../_virtual/_plugin-vue_export-helper.js"),u=t.default(e.default,[["__scopeId","data-v-f7dd4de6"]]);exports.default=u;

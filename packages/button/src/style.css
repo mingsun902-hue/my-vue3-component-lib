@@ -1,0 +1,60 @@
+.xx-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #409EFF;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* 类型修饰符（配色） */
+.xx-button--primary { background-color: #409EFF; color: #ffffff; }
+.xx-button--success { background-color: #67C23A; color: #ffffff; }
+.xx-button--warning { background-color: #E6A23C; color: #ffffff; }
+.xx-button--danger  { background-color: #F56C6C; color: #ffffff; }
+
+/* 尺寸修饰符 */
+.xx-button--small  { font-size: 0.875rem; padding: 0.25em 0.5em; }
+.xx-button--medium { font-size: 1rem;    padding: 0.5em 1em; }
+.xx-button--large  { font-size: 1.125rem; padding: 0.75em 1.5em; }
+
+/* 状态类：禁用 */
+.xx-button.is-disabled {
+  background-color: #CCCCCC;
+  border-color: #999999;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.xx-button.is-disabled:hover {
+  background-color: #CCCCCC;
+}
+
+/* 状态类：加载 (可选样式) */
+.xx-button.is-loading {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* 圆形与椭圆形 */
+.xx-button.is-circle {
+  padding: 0;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+}
+.xx-button.is-round {
+  border-radius: 999px;
+}
+
+/* 悬停效果：非禁用状态下加深背景色 */
+.xx-button:not(.is-disabled):hover {
+  filter: brightness(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

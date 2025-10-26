@@ -1,0 +1,139 @@
+/* ==========================================================
+   Input 组件样式（命名空间：xx）
+   ========================================================== */
+
+.xx-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 32px;
+  padding-left: 2px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ========== 状态样式 ========== */
+
+/* 悬浮状态 */
+.xx-input:hover {
+  border-color: #8cc6ff;
+}
+
+/* 聚焦状态（focus-within 捕获内部 input） */
+.xx-input:focus-within {
+  border-color: skyblue;
+  box-shadow: 0 0 0 2px rgba(135, 206, 235, 0.25);
+}
+
+/* 禁用状态 */
+.xx-input.is-disabled {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+.xx-input.is-disabled .xx-input__inner {
+  color: #c0c4cc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.xx-input.is-disabled .xx-input__clear {
+  display: none;
+}
+
+/* ========== 内部输入框 ========== */
+.xx-input__inner {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  padding: 0 8px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.xx-input__inner::placeholder {
+  color: #a8a8a8;
+}
+
+/* ========== 清除按钮 ========== */
+.xx-input__clear {
+  width: 30px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #636262;
+  user-select: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+/* hover 或聚焦时显示清除按钮 */
+.xx-input:hover .xx-input__clear,
+.xx-input:focus-within .xx-input__clear {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* hover 清除按钮高亮 */
+.xx-input__clear:hover {
+  color: #409eff;
+}
+
+/* ========== 尺寸修饰符 ========== */
+.xx-input--small {
+  height: 28px;
+  font-size: 12px;
+}
+.xx-input--small .xx-input__inner {
+  font-size: 12px;
+  padding: 0 6px;
+}
+.xx-input--small .xx-input__clear {
+  width: 26px;
+  font-size: 14px;
+}
+
+.xx-input--medium {
+  height: 32px;
+  font-size: 14px;
+}
+.xx-input--medium .xx-input__inner {
+  font-size: 14px;
+  padding: 0 8px;
+}
+.xx-input--medium .xx-input__clear {
+  width: 30px;
+  font-size: 16px;
+}
+
+.xx-input--large {
+  height: 38px;
+  font-size: 16px;
+}
+.xx-input--large .xx-input__inner {
+  font-size: 16px;
+  padding: 0 10px;
+}
+.xx-input--large .xx-input__clear {
+  width: 34px;
+  font-size: 18px;
+}
+
+/* ========== 过渡动画 ========== */
+.xx-input,
+.xx-input__clear {
+  transition: all 0.2s ease-in-out;
+}

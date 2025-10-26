@@ -1,0 +1,9 @@
+{
+  "name": "play",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "packageManager": "pnpm@10.18.3"
+}

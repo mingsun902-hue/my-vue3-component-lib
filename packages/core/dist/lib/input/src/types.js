@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("../../utils/dist/esm/index.js"),l=["small","medium","large"],i=e.buildProps({modelValue:String,size:{type:String,values:l,default:"medium"},placeholder:String,disabled:Boolean,clearable:Boolean});exports.inputProps=i;

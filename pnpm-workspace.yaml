@@ -1,0 +1,4 @@
+packages:
+  - 'packages/*'
+  - 'play'
+# 告诉pnpm子包都在package里面，这是个nomorepo项目

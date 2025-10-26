@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1761396504527" clover="3.2.0">
+  <project timestamp="1761396504528" name="All files">
+    <metrics statements="33" coveredstatements="33" conditionals="10" coveredconditionals="8" methods="8" coveredmethods="8" elements="51" coveredelements="49" complexity="0" loc="33" ncloc="33" packages="1" files="2" classes="2"/>
+    <file name="Message.vue" path="C:\Users\mingsun\Desktop\my-vue3-component-lib\packages\message\src\Message.vue">
+      <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <line num="2" count="13" type="stmt"/>
+      <line num="15" count="7" type="stmt"/>
+      <line num="16" count="7" type="stmt"/>
+      <line num="17" count="7" type="stmt"/>
+      <line num="20" count="25" type="stmt"/>
+      <line num="23" count="7" type="stmt"/>
+      <line num="28" count="7" type="stmt"/>
+      <line num="33" count="7" type="stmt"/>
+      <line num="34" count="7" type="cond" truecount="1" falsecount="1"/>
+      <line num="35" count="7" type="stmt"/>
+      <line num="36" count="2" type="stmt"/>
+      <line num="39" count="7" type="cond" truecount="1" falsecount="1"/>
+      <line num="40" count="7" type="stmt"/>
+    </file>
+    <file name="createMessage.ts" path="C:\Users\mingsun\Desktop\my-vue3-component-lib\packages\message\src\createMessage.ts">
+      <metrics statements="20" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="9" count="7" type="stmt"/>
+      <line num="10" count="7" type="stmt"/>
+      <line num="12" count="7" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="20" count="7" type="stmt"/>
+      <line num="25" count="7" type="stmt"/>
+      <line num="26" count="7" type="stmt"/>
+      <line num="28" count="7" type="stmt"/>
+      <line num="30" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="38" count="9" type="stmt"/>
+      <line num="39" count="9" type="stmt"/>
+      <line num="40" count="25" type="stmt"/>
+      <line num="42" count="25" type="cond" truecount="2" falsecount="0"/>
+    </file>
+  </project>
+</coverage>
