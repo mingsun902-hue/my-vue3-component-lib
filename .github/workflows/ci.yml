@@ -14,7 +14,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # 一定要加这行！
+          fetch-depth: 0 # ✅ 拉取完整历史
+          fetch-tags: true # ✅ 同步远程分支引用
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v3
