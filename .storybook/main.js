@@ -9,12 +9,12 @@ export default {
     options: {},
   },
   viteFinal: async (config) => {
-    // ✅ 确保 Vue 插件启用
+    //确保 Vue 插件启用
     config.plugins = config.plugins || []
     config.plugins.push(vue())
     return config
   },
   docs: {
-    autodocs: true, // ✅ 自动生成 Docs 页
+    autodocs: true, //自动生成 Docs 页
   },
 }

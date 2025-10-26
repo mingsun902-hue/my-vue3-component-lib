@@ -1,55 +1,75 @@
-// scripts/build.js
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
-const packagesDir = path.resolve('./packages')
-const changedPkgs = new Set()
-
-function safeExec(cmd) {
+/**
+ * 1️⃣ 自动检测改动包
+ */
+function getChangedPackages() {
+  // 自动判断 main/master
+  let baseBranch = 'origin/main'
   try {
-    return execSync(cmd).toString()
+    execSync('git fetch origin main', { stdio: 'ignore' })
   } catch {
-    return ''
+    baseBranch = 'origin/master'
+    execSync('git fetch origin master', { stdio: 'ignore' })
   }
-}
 
-// ✅ 尝试用 git diff 检测改动
-let diffOutput = safeExec('git diff --name-only HEAD origin/main')
+  const diff = execSync(`git diff --name-only ${baseBranch}`, { encoding: 'utf-8' })
+  const packages = new Set()
 
-if (!diffOutput) {
-  console.log('⚠️ 当前不是 git 仓库，使用文件修改时间检测改动。')
-  const now = Date.now()
-  fs.readdirSync(packagesDir).forEach((pkg) => {
-    const pkgPath = path.join(packagesDir, pkg)
-    const files = fs.readdirSync(pkgPath, { recursive: true })
-    for (const file of files) {
-      const filePath = path.join(pkgPath, file)
-      const stat = fs.statSync(filePath)
-      // 检查过去 10 分钟内有修改的文件
-      if (now - stat.mtimeMs < 10 * 60 * 1000) {
-        changedPkgs.add(pkg)
-        break
-      }
+  diff.split('\n').forEach((file) => {
+    if (file.startsWith('packages/')) {
+      const pkg = file.split('/')[1]
+      packages.add(pkg)
     }
   })
-} else {
-  diffOutput.split('\n').forEach((line) => {
-    const match = line.match(/^packages\/([^/]+)\//)
-    if (match) changedPkgs.add(match[1])
+  return [...packages]
+}
+
+/**
+ * 2️⃣ 计算依赖排序
+ * 按 package.json 中 dependencies 的关系，确定构建顺序
+ */
+function sortByDependencies(changed) {
+  const pkgRoot = path.resolve('packages')
+  const dependencyMap = {}
+
+  fs.readdirSync(pkgRoot).forEach((dir) => {
+    const pkgPath = path.join(pkgRoot, dir, 'package.json')
+    if (fs.existsSync(pkgPath)) {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
+      dependencyMap[dir] = Object.keys(pkg.dependencies || {})
+    }
+  })
+
+  // 简单拓扑排序
+  return changed.sort((a, b) => {
+    if (dependencyMap[a]?.includes(b)) return 1
+    if (dependencyMap[b]?.includes(a)) return -1
+    return 0
   })
 }
 
-if (changedPkgs.size === 0) {
-  console.log('✅ 没有检测到改动包，跳过构建。')
+/**
+ * 3️⃣ 执行构建
+ */
+function buildPackages(packages) {
+  packages.forEach((pkg) => {
+    console.log(`🚀 Building: ${pkg}`)
+    execSync(`pnpm --filter ${pkg} run build`, { stdio: 'inherit' })
+  })
+}
+
+/**
+ * 主流程
+ */
+const changed = getChangedPackages()
+if (changed.length === 0) {
+  console.log('✅ No changed packages, skip build.')
   process.exit(0)
 }
 
-console.log(`📦 检测到改动包: ${[...changedPkgs].join(', ')}`)
-
-for (const pkg of changedPkgs) {
-  console.log(`🚀 构建 ${pkg}...`)
-  execSync(`pnpm --filter ./packages/${pkg} run build`, { stdio: 'inherit' })
-}
-
-console.log('✅ 增量构建完成。')
+const sorted = sortByDependencies(changed)
+console.log(`📦 Changed packages: ${sorted.join(', ')}`)
+buildPackages(sorted)
