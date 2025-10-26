@@ -1,55 +1,41 @@
 import { execSync } from 'child_process'
-import fs from 'fs'
 import path from 'path'
 
-console.log(execSync(`git diff --name-only HEAD~1`, { encoding: 'utf-8' }))
-
-function getBaseBranch() {
-  try {
-    execSync('git fetch origin master --depth=1', { stdio: 'ignore' })
-    return 'origin/master'
-  } catch {
-    try {
-      execSync('git fetch origin main --depth=1', { stdio: 'ignore' })
-      return 'origin/main'
-    } catch {
-      console.log('⚠️ No remote branch detected, fallback to HEAD~1')
-      return 'HEAD~1'
-    }
-  }
-}
-
 function getChangedPackages() {
-  const base = getBaseBranch()
-  let diff
-  try {
-    diff = execSync(`git diff --name-only ${base}`, { encoding: 'utf-8' })
-  } catch (err) {
-    console.log('⚠️ git diff failed, fallback to last commit')
-    diff = execSync('git diff --name-only HEAD~1', { encoding: 'utf-8' })
-  }
+  // 直接比较最近两次提交
+  const diff = execSync('git diff --name-only HEAD^ HEAD', { encoding: 'utf-8' })
+  console.log('🔍 Changed files:')
+  console.log(diff)
 
-  const packages = new Set()
-  diff.split('\n').forEach((file) => {
-    if (file.startsWith('packages/')) {
-      const pkg = file.split('/')[1]
-      packages.add(pkg)
-    }
-  })
-  return [...packages]
+  const pkgs = new Set()
+
+  diff
+    .split('\n')
+    .map((f) => f.trim()) // 去掉多余空格和回车符
+    .filter((f) => f && f.startsWith('packages/')) // 只取 packages 目录下
+    .filter((f) => !f.includes('/dist/')) // 🚫 忽略 dist 文件变化
+    .forEach((f) => {
+      const parts = f.split('/')
+      if (parts.length > 1) pkgs.add(parts[1])
+    })
+
+  return [...pkgs]
 }
 
-function buildPackages(packages) {
-  if (packages.length === 0) {
+function buildPackages(pkgs) {
+  if (pkgs.length === 0) {
     console.log('✅ No changed packages, skip build.')
     return
   }
 
-  console.log(`📦 Changed packages: ${packages.join(', ')}`)
-  packages.forEach((pkg) => {
-    console.log(`🚀 Building ${pkg}...`)
-    execSync(`pnpm --filter ${pkg} run build`, { stdio: 'inherit' })
-  })
+  console.log(`📦 Changed packages: ${pkgs.join(', ')}`)
+  for (const pkg of pkgs) {
+    console.log(`🚀 Building package: ${pkg}`)
+    execSync(`pnpm --filter ${pkg} run build`, {
+      stdio: 'inherit',
+      cwd: path.resolve(process.cwd()),
+    })
+  }
 }
 
 buildPackages(getChangedPackages())
